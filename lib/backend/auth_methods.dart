@@ -2,14 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-registerNewUser({required String userEmail}) async {
+Future registerNewUser({required String userEmail}) async {
   try {
     await FirebaseFirestore.instance.collection('users').doc('$userEmail').set(
       {
         'the_notes': [],
       },
     );
-  } catch (e) {}
+  } catch (e) {
+    print("Error in register: $e");
+  }
 }
 
 Future<bool> signInWithGoogle() async {
@@ -27,7 +29,6 @@ Future<bool> signInWithGoogle() async {
       idToken: googleAuth?.idToken,
     );
 
-    // Once signed in, return the UserCredential
     await FirebaseAuth.instance.signInWithCredential(credential);
     return true;
   } catch (e) {

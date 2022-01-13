@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:loader_overlay/src/overlay_controller_widget_extension.dart';
@@ -177,6 +176,7 @@ class _SignUp extends State<SignUp> {
                                     context.loaderOverlay.visible;
                               });
                               bool result = await signInWithGoogle();
+
                               await registerNewUser(
                                   userEmail: FirebaseAuth
                                       .instance.currentUser!.email

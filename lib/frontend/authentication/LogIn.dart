@@ -1,10 +1,6 @@
 import 'dart:async';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:loader_overlay/src/overlay_controller_widget_extension.dart';
 import 'package:my_note/backend/auth_methods.dart';
 import 'package:my_note/frontend/authentication/authentication_buttons.dart';
@@ -152,8 +148,13 @@ class _LogIn extends State<LogIn> {
                                 _isLoaderVisible =
                                     context.loaderOverlay.visible;
                               });
-
                               bool result = await signInWithGoogle();
+
+                              await registerNewUser(
+                                  userEmail: FirebaseAuth
+                                      .instance.currentUser!.email
+                                      .toString());
+
                               if (_isLoaderVisible) {
                                 context.loaderOverlay.hide();
                               }
