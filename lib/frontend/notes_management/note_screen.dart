@@ -112,6 +112,7 @@ class _NoteScreenState extends State<NoteScreen> {
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         controller: _titleText,
+        textDirection: TextDirection.rtl,
         maxLength: 25,
         style: TextStyle(color: Colors.black),
         maxLines: null,
@@ -131,19 +132,33 @@ class _NoteScreenState extends State<NoteScreen> {
   Widget _noteTextField() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: TextFormField(
-        controller: _noteText,
-        style: TextStyle(color: Colors.black),
-        maxLines: null,
-        decoration: InputDecoration(
-          hintText: 'Start writing...',
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextFormField(
+            controller: _noteText,
+            style: TextStyle(color: Colors.black),
+            maxLines: null,
+            textDirection: TextDirection.rtl,
+            decoration: InputDecoration(
+              hintText: 'Start writing...',
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+            ),
+            onChanged: (text) {
+              setState(() {});
+            },
           ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+          Text(
+            "Words: ${_noteText.text.split(" ").length - 1} Letters: ${_noteText.text.length}",
+            style: TextStyle(color: Colors.black),
           ),
-        ),
+        ],
       ),
     );
   }

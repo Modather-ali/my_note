@@ -2,15 +2,37 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+Future<bool> isUserRegistered() async {
+  List docsId = [];
+
+  QuerySnapshot result =
+      await FirebaseFirestore.instance.collection("Users").get();
+
+  for (var queryDocumentSnapshot in result.docs) {
+    docsId.add(queryDocumentSnapshot.id);
+  }
+
+  print('$docsId');
+
+  return docsId.contains(FirebaseAuth.instance.currentUser!.email);
+}
+
 Future registerNewUser({required String userEmail}) async {
-  try {
-    await FirebaseFirestore.instance.collection('users').doc('$userEmail').set(
-      {
-        'the_notes': [],
-      },
-    );
-  } catch (e) {
-    print("Error in register: $e");
+  if (await isUserRegistered()) {
+    print("this user already registered");
+  } else {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc('$userEmail')
+          .set(
+        {
+          'the_notes': [],
+        },
+      );
+    } catch (e) {
+      print("Error in register: $e");
+    }
   }
 }
 

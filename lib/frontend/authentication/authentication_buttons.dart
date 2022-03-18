@@ -1,8 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:my_note/backend/auth_methods.dart';
 
 Widget authTextField({
   required String labelText,
@@ -44,7 +40,7 @@ Widget authWiteEmailButton({
     child: ElevatedButton(
       onPressed: onPressed,
       child: Text(buttonRole),
-      style: ElevatedButton.styleFrom(elevation: 10.0),
+      style: ElevatedButton.styleFrom(elevation: 4.0),
     ),
   );
 }
@@ -59,7 +55,7 @@ Widget authWiteGoogleButton({
     child: ElevatedButton(
       child: Image.asset('assets/images/google_icon.png'),
       onPressed: onPressed,
-      style: ElevatedButton.styleFrom(primary: Colors.white, elevation: 10.0),
+      style: ElevatedButton.styleFrom(primary: Colors.white, elevation: 4.0),
     ),
   );
 }

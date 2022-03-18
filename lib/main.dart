@@ -49,16 +49,16 @@ class WelcomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 5.0, right: 5.0),
+            //  margin: EdgeInsets.only(left: 5.0, right: 5.0),
             height: screenHeight / 1.9,
             width: screenWidth,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey,
-                  blurRadius: 15.0,
+                  blurRadius: 20.0,
                   offset: Offset(0.5, -0.5),
-                  spreadRadius: 1.0,
+                  spreadRadius: 5.0,
                 )
               ],
               color: Colors.tealAccent,
@@ -83,7 +83,11 @@ class WelcomeScreen extends StatelessWidget {
                     MediaQuery.of(context).orientation == Orientation.portrait
                         ? Text(
                             'My Note',
-                            style: TextStyle(fontSize: 20, color: Colors.black),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           )
                         : SizedBox(),
               ),
